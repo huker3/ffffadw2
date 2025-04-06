@@ -139,7 +139,7 @@ function Library:Window(options)
     Body.Size = UDim2.new(0, 658, 0, 516)
     Body.ZIndex = 2
 
-    bodyCorner.CornerRadius = UDim.new(0, 12) -- Increased corner radius
+    bodyCorner.CornerRadius = UDim.new(0, 30) -- Increased corner radius
     bodyCorner.Name = "bodyCorner"
     bodyCorner.Parent = Body
 
@@ -159,7 +159,7 @@ function Library:Window(options)
     SideBar.Size = UDim2.new(0, 187, 0, 516)
     SideBar.ZIndex = 3
 
-    sidebarCorner.CornerRadius = UDim.new(0, 12) -- Increased corner radius
+    sidebarCorner.CornerRadius = UDim.new(0, 30) -- Increased corner radius
     sidebarCorner.Name = "sidebarCorner"
     sidebarCorner.Parent = SideBar
 
