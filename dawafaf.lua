@@ -181,14 +181,6 @@ function Library:Window(options)
     TopBar.Size = UDim2.new(0, 562, 0, 49)
     TopBar.ZIndex = 3
 
-    tbLine.Name = "tbLine"
-    tbLine.Parent = TopBar
-    tbLine.BackgroundColor3 = Color3.fromRGB(15, 23, 36)
-    tbLine.BorderSizePixel = 0
-    tbLine.Position = UDim2.new(0.0400355868, 0, 1, 0)
-    tbLine.Size = UDim2.new(0, 469, 0, 3)
-    tbLine.ZIndex = 3
-
     Title.Name = "Title"
     Title.Parent = SideBar
     Title.BackgroundColor3 = Color3.fromRGB(234, 239, 245)
