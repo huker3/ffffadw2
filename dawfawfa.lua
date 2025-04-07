@@ -50,7 +50,7 @@ local function Dragify(frame, parent)
     
     frame.InputChanged:Connect(function(input)
         if input.UserInputType == Enum.UserInputType.MouseMovement and dragStartPos then
-            local delta = input.Position - dragStartPos
+            local delta = Vector2.new(input.Position.X, input.Position.Y) - dragStartPos
             local newPos = UDim2.new(
                 parent.Position.X.Scale,
                 frameStartPos.X + delta.X,
