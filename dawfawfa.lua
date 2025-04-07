@@ -10,6 +10,12 @@ local input = game:GetService("UserInputService")
 local SoundService = game:GetService("SoundService")
 local themouse = game.Players.LocalPlayer:GetMouse()
 
+for i,v in next, game.CoreGui:GetChildren() do
+    if v:IsA("ScreenGui") and v.Name == "Neverlose" then
+        v:Destroy() 
+    end
+end
+
 local notif = {}
 
 function notif:Notification(title, desc, font, font2, visibletime)
