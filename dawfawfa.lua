@@ -9,14 +9,7 @@ local TweenService = game:GetService("TweenService")
 local input = game:GetService("UserInputService")
 local SoundService = game:GetService("SoundService")
 
-local themouse = game.Players.LocalPlayer:GetMouse()
-
-for i,v in next, game.CoreGui:GetChildren() do
-    if v:IsA("ScreenGui") and v.Name == "Neverlose" then
-        v:Destroy() 
-    end
-end
-
+-- Notification system
 local notif = {}
 
 function notif:Notification(title, desc, font, font2, visibletime)
@@ -145,6 +138,7 @@ function notif:Notification(title, desc, font, font2, visibletime)
     end)
 end
 
+-- Updated Notify function to use the new notification system
 local function Notify(tt, tx)
     notif:Notification(tt, tx, "GothamSemibold", "Gotham", 5)
 end
@@ -165,6 +159,14 @@ local function PlayClickSound()
     sound:Play()
     game:Debris:AddItem(sound, 5)
 end
+
+for i,v in next, game.CoreGui:GetChildren() do
+    if v:IsA("ScreenGui") and v.Name == "Neverlose" then
+        v:Destroy() 
+    end
+end
+
+local themouse = game.Players.LocalPlayer:GetMouse()
 
 local function Dragify(frame, parent)
     parent = parent or frame
@@ -219,6 +221,7 @@ local function round(num, bracket)
     return a
 end
 
+-- Update button effects to include sounds
 local function buttoneffect(options)
     pcall(function()
         options.entered.MouseEnter:Connect(function()
@@ -443,6 +446,7 @@ function Library:Window(options)
             tabButton.TextXAlignment = Enum.TextXAlignment.Left
             tabButton.ZIndex = 3
             tabButton.MouseButton1Click:Connect(function()
+                PlayClickSound()
                 for i,v in next, allPages:GetChildren() do
                     v.Visible = false
                 end
@@ -568,7 +572,7 @@ function Library:Window(options)
                 local elements = {}
 
                 function elements:Button(options)
-                    if not options.text or not options.callback then Notify("Button", "Missing arguments!") return end
+                    if not options.text or not options.callback then notif:Notification("Button", "Missing arguments!", "GothamSemibold", "Gotham", 3) return end
 
                     local TextButton = Instance.new("TextButton")
 
@@ -594,7 +598,7 @@ function Library:Window(options)
                 end
 
                 function elements:Toggle(options)
-                    if not options.text or not options.callback then Notify("Toggle", "Missing arguments!") return end
+                    if not options.text or not options.callback then notif:Notification("Toggle", "Missing arguments!", "GothamSemibold", "Gotham", 3) return end
 
                     local toggleLabel = Instance.new("TextLabel")
                     local toggleFrame = Instance.new("TextButton")
@@ -626,6 +630,7 @@ function Library:Window(options)
                     buttoneffect({frame = toggleLabel, entered = toggleLabel})
 
                     local function PerformToggle()
+                        PlayClickSound()
                         State = not State
                         options.callback(State)
                         TweenService:Create(toggleButton, TweenInfo.new(0.2, Enum.EasingStyle.Quart, Enum.EasingDirection.InOut), {
@@ -688,7 +693,7 @@ function Library:Window(options)
                 end
 
                 function elements:Slider(options)
-                    if not options.text or not options.min or not options.max or not options.callback then Notify("Slider", "Missing arguments!") return end
+                    if not options.text or not options.min or not options.max or not options.callback then notif:Notification("Slider", "Missing arguments!", "GothamSemibold", "Gotham", 3) return end
 
                     local Slider = Instance.new("Frame")
                     local sliderLabel = Instance.new("TextLabel")
@@ -731,7 +736,7 @@ function Library:Window(options)
                     sliderLabel.Name = "sliderLabel"
                     sliderLabel.Parent = Slider
                     sliderLabel.AnchorPoint = Vector2.new(0.5, 0.5)
-                    sliderLabel.BackgroundColor3 = Color3.fromRGB(157, 171, 182)
+                    sliderLabel.BackgroundColor3 = Color3.fromRGB(
                     sliderLabel.BackgroundTransparency = 1.000
                     sliderLabel.Position = UDim2.new(0.2, 0, 0.5, 0)
                     sliderLabel.Size = UDim2.new(0, 77, 0, 22)
