@@ -7,13 +7,7 @@ local uiVisible = true
 
 local TweenService = game:GetService("TweenService")
 local input = game:GetService("UserInputService")
-
-for i,v in next, game.CoreGui:GetChildren() do
-    if v:IsA("ScreenGui") and v.Name == "Neverlose" then
-        v:Destroy() 
-    end
-end
-
+local SoundService = game:GetService("SoundService")
 local themouse = game.Players.LocalPlayer:GetMouse()
 
 local notif = {}
